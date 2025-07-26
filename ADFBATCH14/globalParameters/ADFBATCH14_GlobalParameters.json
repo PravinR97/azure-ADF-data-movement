@@ -1,0 +1,14 @@
+{
+	"storageaccount": {
+		"type": "string",
+		"value": "storageaccountclasss"
+	},
+	"filepath": {
+		"type": "string",
+		"value": "target/NewTableByGlobalPara"
+	},
+	"Container": {
+		"type": "string",
+		"value": "raw"
+	}
+}
