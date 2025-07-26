@@ -1,0 +1,25 @@
+{
+	"name": "ADFBATCH14",
+	"properties": {
+		"globalParameters": {
+			"storageaccount": {
+				"type": "string",
+				"value": "storageaccountclasss"
+			},
+			"filepath": {
+				"type": "string",
+				"value": "target/NewTableByGlobalPara"
+			},
+			"Container": {
+				"type": "string",
+				"value": "raw"
+			}
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8b82e927-ce9d-4521-a37e-9b7b2abc3048",
+		"tenantId": "84b4ae2d-da30-4c6f-a65c-608d89ff6efe"
+	}
+}
