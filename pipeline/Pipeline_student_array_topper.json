@@ -1,0 +1,108 @@
+{
+	"name": "Pipeline_student_array_topper",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_students",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Filter_StudentArray",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Filter_StudentArray').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Is_Topper",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greater(item().marks, 90)",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Set variable1",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "IsTopper",
+											"value": {
+												"value": "@item().name",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Students_List",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "StudentArray",
+					"value": {
+						"value": "@json('[{\"name\":\"John\",\"marks\":95},{\"name\":\"Amit\",\"marks\":45},{\"name\":\"Sara\",\"marks\":85},{\"name\":\"Neha\",\"marks\":92},{\"name\":\"Ravi\",\"marks\":60}]')\n",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Filter_StudentArray",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Students_List",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('StudentArray')",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@greater(item().marks, 50)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"StudentArray": {
+				"type": "Array"
+			},
+			"IsTopper": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
