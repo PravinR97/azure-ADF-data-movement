@@ -1,0 +1,58 @@
+{
+	"name": "dataflow_mapping1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "MapDataFlow1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "sink_data_mapping",
+						"type": "DatasetReference"
+					},
+					"name": "sinkMapData1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filterMapData"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          employeeid as string,",
+				"          firstname as string,",
+				"          lastname as string,",
+				"          email as string,",
+				"          salary as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> MapDataFlow1",
+				"MapDataFlow1 filter(salary> '50000') ~> filterMapData",
+				"filterMapData sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          employeeid as string,",
+				"          firstname as string,",
+				"          lastname as string,",
+				"          email as string,",
+				"          salary as string",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkMapData1"
+			]
+		}
+	}
+}

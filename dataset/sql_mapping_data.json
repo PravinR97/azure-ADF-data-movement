@@ -1,0 +1,16 @@
+{
+	"name": "sql_mapping_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_Source_ls_1st",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "students"
+		}
+	}
+}
