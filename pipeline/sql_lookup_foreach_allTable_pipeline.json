@@ -91,7 +91,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"TABLE_SCHEMA": {
-											"value": "@item().TABLE_SCHEMA",
+											"value": "@item().Table_Schema",
 											"type": "Expression"
 										},
 										"TABLE_NAME": {

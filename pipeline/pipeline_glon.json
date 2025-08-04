@@ -87,8 +87,18 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "Source_ls_global_para",
-									"type": "DatasetReference"
+									"referenceName": "Source_Global_Parameter",
+									"type": "DatasetReference",
+									"parameters": {
+										"Table_Schema": {
+											"value": "@item().Table_Schema",
+											"type": "Expression"
+										},
+										"Table_Name": {
+											"value": "@item().TABLE_NAME",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
@@ -112,14 +122,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"Container": {
-				"type": "string"
-			},
-			"Path": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }

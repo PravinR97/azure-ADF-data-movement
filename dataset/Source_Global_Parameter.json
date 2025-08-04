@@ -1,5 +1,5 @@
 {
-	"name": "Source_ls_global_para",
+	"name": "Source_Global_Parameter",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SQL_Source_ls_1st",
