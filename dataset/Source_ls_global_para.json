@@ -1,0 +1,12 @@
+{
+	"name": "Source_ls_global_para",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQL_Source_ls_1st",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
