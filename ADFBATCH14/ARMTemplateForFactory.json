@@ -52,7 +52,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"variableName": "PassedStudents",
+							"variableName": "Students_List",
 							"value": [
 								{
 									"name": "John",
@@ -83,7 +83,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@variables('PassedStudents')",
+								"value": "@variables('Students_List')",
 								"type": "Expression"
 							},
 							"activities": [
@@ -106,7 +106,7 @@
 												"typeProperties": {
 													"variableName": "PassedStudents",
 													"value": {
-														"value": "item().name",
+														"value": "@item().name",
 														"type": "Expression"
 													}
 												}
@@ -123,6 +123,9 @@
 				},
 				"variables": {
 					"PassedStudents": {
+						"type": "Array"
+					},
+					"Students_List": {
 						"type": "Array"
 					}
 				},
