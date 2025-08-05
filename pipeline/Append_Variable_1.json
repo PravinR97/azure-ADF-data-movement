@@ -1,0 +1,88 @@
+{
+	"name": "Append_Variable_1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable For Append",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "PassedStudents",
+					"value": [
+						{
+							"name": "John",
+							"marks": 95
+						},
+						{
+							"name": "Amit",
+							"marks": 45
+						},
+						{
+							"name": "Sara",
+							"marks": 85
+						}
+					]
+				}
+			},
+			{
+				"name": "ForEach_AppendVar",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable For Append",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('PassedStudents')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "If Condition_Append_Var",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greater(item().marks, 60)",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Append Passed Students",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "PassedStudents",
+											"value": {
+												"value": "item().name",
+												"type": "Expression"
+											}
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"PassedStudents": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	}
+}
