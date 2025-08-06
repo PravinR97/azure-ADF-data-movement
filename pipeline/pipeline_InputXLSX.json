@@ -1,0 +1,102 @@
+{
+	"name": "pipeline_InputXLSX",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach_excelfile",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.sheetname",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy Excel Sheet",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Excel_ds_copy_inpufile",
+									"type": "DatasetReference",
+									"parameters": {
+										"sheetname": {
+											"value": "@item().sheetname",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DelimitedText6",
+									"type": "DatasetReference",
+									"parameters": {
+										"sheetname": {
+											"value": "@item().sheetname",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"sheetname": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"sheetname": "products"
+					},
+					{
+						"sheetname": "customers"
+					}
+				]
+			}
+		},
+		"annotations": []
+	}
+}
