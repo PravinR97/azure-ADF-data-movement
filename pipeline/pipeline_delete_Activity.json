@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -74,6 +75,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureDataLakeStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": {
+							"value": "@activity('Copy data for delete').output",
+							"type": "Expression"
+						}
+					},
 					"enableLogging": true
 				}
 			},
