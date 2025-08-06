@@ -19,7 +19,6 @@
 					"value": "@dataset().file_name",
 					"type": "Expression"
 				},
-				"folderPath": "source",
 				"fileSystem": "raw"
 			},
 			"columnDelimiter": ",",
