@@ -1,5 +1,5 @@
 {
-	"name": "pipeline_glon",
+	"name": "pipeline_global_parameter",
 	"properties": {
 		"activities": [
 			{
